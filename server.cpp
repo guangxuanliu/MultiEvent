@@ -2,6 +2,8 @@
 #include "TcpServer.h"
 #include "TcpConnection.h"
 
+#include <stdlib.h>
+
 #include <iostream>
 using namespace std;
 
@@ -36,7 +38,7 @@ void messageCb(TcpConnection *conn, int len)
 {
     char buf[len + 1] = {0};
     conn->read(buf, len);
-    cout << "客户端(" << conn->remoteIp_ << ":" << conn->remotePort_ << "):" << buf << endl;
+    cout << "客户端(" << conn->remoteIp_ << ":" << conn->remotePort_ << ")， 长度:" << len << endl;
 
     // 回复
     conn->write(buf, len);

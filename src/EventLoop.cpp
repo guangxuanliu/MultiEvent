@@ -3,6 +3,7 @@
 #include <event2/thread.h>
 
 #include <signal.h>
+#include <stdlib.h>
 
 #include <iostream>
 using std::cerr;
