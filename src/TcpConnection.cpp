@@ -156,18 +156,9 @@ void TcpConnection::eventCb(struct bufferevent *bev, short events, void *arg)
         }
     }
     // 对方主动断开连接
-    else if (events & (BEV_EVENT_READING | BEV_EVENT_EOF))
-    {
-        conn->isConnect_ = false;
-        if (conn->getConnectionCb())
-        {
-            conn->getConnectionCb()(conn);
-        }
-
-        delete conn;
-    }
     // 异常信息
-    else if (events & BEV_EVENT_ERROR)
+    else if ((events & BEV_EVENT_EOF) ||
+              (events & BEV_EVENT_ERROR))
     {
         conn->isConnect_ = false;
         if (conn->getConnectionCb())

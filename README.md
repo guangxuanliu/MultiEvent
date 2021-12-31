@@ -5,3 +5,6 @@ libevent的简单封装，既可以作为客户端，又可以作为服务端。
 ## 使用方法
 - 先源码编译libevent。
 - 客户端使用方法参考[client.cpp](client.cpp)，服务端使用方法参考[server.cpp](server.cpp)
+
+## 注意
+- 粘包情况：需要由用户自行处理。

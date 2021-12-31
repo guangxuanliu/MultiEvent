@@ -136,13 +136,11 @@ void TcpServer::listenCb(struct evconnlistener *listener, evutil_socket_t fd, st
 {
 
     // 获取对方的IP和端口
-    sockaddr_in *sock = (sockaddr_in *)address;
-
     char ip[INET_ADDRSTRLEN];
-    evutil_inet_ntop(AF_INET, &(sock->sin_addr), ip, sizeof(ip));
+    evutil_inet_ntop(AF_INET, &(((sockaddr_in*)address)->sin_addr), ip, sizeof(ip));
     string ipStr = ip;
 
-    int port = ntohs(sock->sin_port);
+    int port = ntohs(((sockaddr_in*)address)->sin_port);
 
     // 分配一个event_base
     TcpServer *server = (TcpServer *)arg;
